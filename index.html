@@ -117,6 +117,16 @@
       background: #ff3e2e;
     }
 
+    input, select {
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      width: 80%;
+      margin-bottom: 10px;
+      font-family: 'Baloo 2', cursive;
+      font-size: 1rem;
+    }
+
     @media (max-width: 600px) {
       .invitacion {
         padding: 30px 15px;
@@ -147,7 +157,6 @@
   <button class="musica-btn" onclick="toggleMusic()" title="Música 🎵">🎵</button>
 
   <div id="particles-js"></div>
-
   <canvas id="confetiCanvas"></canvas>
 
   <div class="invitacion">
@@ -157,7 +166,20 @@
     <p><strong>Fecha:</strong> Sábado 9 de agosto</p>
     <p><strong>Hora:</strong> 4:00 PM</p>
     <p><strong>Lugar:</strong> Casa Aníbal - Diag. 24 13-57, Cdad. de Guatemala</p>
-    <button class="btn-confirmar" onclick="confirmarAsistencia()">Confirmar Asistencia</button>
+
+    <!-- Formulario con Netlify Forms -->
+    <form name="asistencia" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="asistencia" />
+      <input type="text" name="nombre" placeholder="Tu nombre" required />
+      <select name="respuesta" required>
+        <option value="">¿Asistirás?</option>
+        <option value="Sí">Sí, asistiré 🎉</option>
+        <option value="No">No podré asistir 😢</option>
+      </select>
+      <br />
+      <button type="submit" class="btn-confirmar">Enviar Respuesta</button>
+    </form>
+
     <div class="mensaje" id="mensaje"></div>
   </div>
 
@@ -173,14 +195,6 @@
         musicaReproducida = true;
       } else {
         audio.pause();
-      }
-    }
-
-    function confirmarAsistencia() {
-      document.getElementById("mensaje").innerText = "¡Gracias por confirmar! 🎉";
-      if (!musicaReproducida) {
-        audio.play();
-        musicaReproducida = true;
       }
     }
 
@@ -247,28 +261,13 @@
 
     particlesJS("particles-js", {
       "particles": {
-        "number": {
-          "value": 60
-        },
-        "color": {
-          "value": "#ffffff"
-        },
-        "shape": {
-          "type": "circle"
-        },
-        "opacity": {
-          "value": 0.5
-        },
-        "size": {
-          "value": 3
-        },
-        "line_linked": {
-          "enable": false
-        },
-        "move": {
-          "enable": true,
-          "speed": 1
-        }
+        "number": { "value": 60 },
+        "color": { "value": "#ffffff" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.5 },
+        "size": { "value": 3 },
+        "line_linked": { "enable": false },
+        "move": { "enable": true, "speed": 1 }
       }
     });
   </script>
