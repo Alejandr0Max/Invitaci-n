@@ -6,10 +6,7 @@
   <title>Invitación de Cumpleaños</title>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Baloo 2', cursive;
@@ -17,7 +14,6 @@
       overflow-x: hidden;
       overflow-y: auto;
     }
-
     .invitacion {
       background-color: white;
       border-radius: 20px;
@@ -32,31 +28,24 @@
       opacity: 0;
       transform: scale(0.8);
     }
-
     @keyframes pop-in {
       to {
         opacity: 1;
         transform: scale(1);
       }
     }
-
     h1 {
       font-size: 2.5rem;
       color: #ff6f61;
       margin-bottom: 10px;
       transition: all 0.3s ease;
     }
-
-    h1:hover {
-      text-shadow: 0 0 10px #ff6f61;
-    }
-
+    h1:hover { text-shadow: 0 0 10px #ff6f61; }
     .invitacion p {
       font-size: 1.1rem;
       color: #444;
       margin-bottom: 10px;
     }
-
     .btn-confirmar {
       padding: 12px 25px;
       font-size: 1rem;
@@ -68,19 +57,16 @@
       transition: all 0.3s ease;
       margin-top: 20px;
     }
-
     .btn-confirmar:hover {
       background-color: #ff3e2e;
       transform: scale(1.05);
     }
-
     .mensaje {
       margin-top: 20px;
       color: green;
       font-weight: bold;
       font-size: 1.1rem;
     }
-
     canvas, #particles-js {
       position: fixed;
       top: 0;
@@ -90,13 +76,11 @@
       height: 100%;
       pointer-events: none;
     }
-
     .contador {
       font-size: 1.3rem;
       color: #222;
       margin-bottom: 15px;
     }
-
     .musica-btn {
       position: fixed;
       bottom: 20px;
@@ -112,11 +96,7 @@
       box-shadow: 0 0 10px rgba(255, 111, 97, 0.5);
       z-index: 10;
     }
-
-    .musica-btn:hover {
-      background: #ff3e2e;
-    }
-
+    .musica-btn:hover { background: #ff3e2e; }
     input, select {
       padding: 10px;
       border-radius: 10px;
@@ -126,31 +106,18 @@
       font-family: 'Baloo 2', cursive;
       font-size: 1rem;
     }
-
     @media (max-width: 600px) {
-      .invitacion {
-        padding: 30px 15px;
-        margin: 5vh 10px;
-      }
-
-      h1 {
-        font-size: 2rem;
-      }
-
-      .contador {
-        font-size: 1.1rem;
-      }
-
-      .btn-confirmar {
-        font-size: 0.95rem;
-      }
+      .invitacion { padding: 30px 15px; margin: 5vh 10px; }
+      h1 { font-size: 2rem; }
+      .contador { font-size: 1.1rem; }
+      .btn-confirmar { font-size: 0.95rem; }
     }
   </style>
 </head>
 <body>
 
   <audio id="music" loop>
-    <source src="Happy Birthday (Karaoke_Acoustic Instrumental) - AcousticHeaven.mp3" type="audio/mpeg">
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_f392e57a56.mp3?filename=happy-birthday-to-you-piano-version-109505.mp3" type="audio/mpeg">
     Tu navegador no soporta audio.
   </audio>
 
@@ -167,7 +134,7 @@
     <p><strong>Hora:</strong> 4:00 PM</p>
     <p><strong>Lugar:</strong> Casa Aníbal - Diag. 24 13-57, Cdad. de Guatemala</p>
 
-    <!-- Formulario con Netlify Forms -->
+    <!-- Formulario Netlify -->
     <form name="asistencia" method="POST" data-netlify="true">
       <input type="hidden" name="form-name" value="asistencia" />
       <input type="text" name="nombre" placeholder="Tu nombre" required />
@@ -184,15 +151,12 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-
   <script>
     let musicaReproducida = false;
     const audio = document.getElementById("music");
-
     function toggleMusic() {
       if (audio.paused) {
-        audio.play();
-        musicaReproducida = true;
+        audio.play(); musicaReproducida = true;
       } else {
         audio.pause();
       }
@@ -203,10 +167,8 @@
       const ctx = canvas.getContext("2d");
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-
       const colores = ["#ff6f61", "#ffc107", "#4caf50", "#03a9f4", "#e91e63"];
       const confeti = [];
-
       for (let i = 0; i < 100; i++) {
         confeti.push({
           x: Math.random() * canvas.width,
@@ -216,7 +178,6 @@
           speed: Math.random() * 3 + 2
         });
       }
-
       function animar() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         confeti.forEach(c => {
@@ -232,7 +193,6 @@
         });
         requestAnimationFrame(animar);
       }
-
       animar();
     };
 
@@ -242,17 +202,14 @@
     function actualizarContador() {
       const ahora = new Date();
       const tiempoFaltante = eventoFecha - ahora;
-
       if (tiempoFaltante <= 0) {
         contadorEl.innerHTML = "¡Es hoy! 🎉";
         return;
       }
-
       const dias = Math.floor(tiempoFaltante / (1000 * 60 * 60 * 24));
       const horas = Math.floor((tiempoFaltante / (1000 * 60 * 60)) % 24);
       const minutos = Math.floor((tiempoFaltante / (1000 * 60)) % 60);
       const segundos = Math.floor((tiempoFaltante / 1000) % 60);
-
       contadorEl.innerHTML = `Faltan ${dias} días, ${horas}h ${minutos}m ${segundos}s`;
     }
 
@@ -260,14 +217,14 @@
     actualizarContador();
 
     particlesJS("particles-js", {
-      "particles": {
-        "number": { "value": 60 },
-        "color": { "value": "#ffffff" },
-        "shape": { "type": "circle" },
-        "opacity": { "value": 0.5 },
-        "size": { "value": 3 },
-        "line_linked": { "enable": false },
-        "move": { "enable": true, "speed": 1 }
+      particles: {
+        number: { value: 60 },
+        color: { value: "#ffffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5 },
+        size: { value: 3 },
+        line_linked: { enable: false },
+        move: { enable: true, speed: 1 }
       }
     });
   </script>
